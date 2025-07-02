@@ -1,6 +1,6 @@
 use Cro::HTTP::Session::Persistent;
 use DB::MySQL;
-use JSON::Fast;
+use JSON::Class;
 
 # A Cro HTTP session storage using MySQL. Expects to be parmeterized
 # with the session type.
@@ -16,7 +16,7 @@ role Cro::HTTP::Session::MySQL[::Session] does Cro::HTTP::Session::Persistent[Se
     method create(Str $session-id) {
         my $inserted = $!db.query(
             "INSERT INTO {$!sessions-table} ({$!id-column}, {$!data-column}, {$.timestamp-column}) VALUES (?, ?, NOW())", 
-            $session-id, '{}');
+            $session-id, '{}') || 0;
         if $inserted == 0 {
             # TODO: create a most robust mechanism for handling duplicate session IDs.
             $!db.query("DELETE FROM sessions WHERE id = ?", $session-id);
