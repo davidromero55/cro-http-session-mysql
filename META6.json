@@ -1,0 +1,23 @@
+{
+  "name": "Cro::HTTP::Session::MySQL",
+  "description": "Cro session storage middleware using MySQL.",
+  "version": "0.1",
+  "perl": "6.*",
+  "auth": "davidromero55",
+  "depends": [
+    "Cro::HTTP",
+    "DB::MySQL",
+    "JSON::Class"
+  ],
+  "build-depends": [],
+  "test-depends": [
+    "Cro::HTTP::Test",
+    "Test::Mock"
+  ],
+  "provides": {
+    "Cro::HTTP::Session::MySQL": "lib/Cro/HTTP/Session/MySQL.rakumod"
+  },
+  "resources": [],
+  "license": "Artistic-2.0",
+  "source-url": "https://github.com/davidromero55/cro-http-session-mysql.git"
+}
